@@ -85,6 +85,14 @@ static int debug_thread(void *arg)
 				vif->restart = 1;
 			}
 		}
+
+		/* For Spi, clear 'is_init' flag so that protocol offset
+		 * register can be send to FW to setup required crc mode after
+		 * chip reset
+		 */
+		if (wl->io_type == WILC_HIF_SPI)
+			wl->hif_func->hif_clear_init(wl);
+
 		//TODO://Need to find way to call them in reverse
 		i = 0;
 		list_for_each_entry_rcu(vif, &wl->vif_list, list) {
@@ -280,7 +288,7 @@ void eap_buff_timeout(unsigned long user)
 					priv->buffered_eap->pkt_offset,
 					(void *)priv);
 	if (status)
-		pr_err("Failed so send buffered eap\n");
+		PRINT_ER(vif->ndev, "Failed so send buffered eap\n");
 }
 
 void wilc_wlan_set_bssid(struct net_device *wilc_netdev, u8 *bssid, u8 mode)
@@ -1383,3 +1391,4 @@ struct wilc_vif *wilc_netdev_ifc_init(struct wilc *wl, const char *name,
 
 MODULE_LICENSE("GPL");
 MODULE_FIRMWARE(WILC1000_FW(WILC1000_API_VER));
+MODULE_FIRMWARE(WILC3000_FW(WILC3000_API_VER));

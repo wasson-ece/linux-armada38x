@@ -475,7 +475,7 @@ int wilc_wlan_txq_add_net_pkt(struct net_device *dev,
 		return 0;
 	}
 
-	if (!(wilc->initialized)) {
+	if (!wilc->initialized) {
 		PRINT_INFO(vif->ndev, TX_DBG,
 			   "not_init, return from net_pkt\n");
 		tx_complete_fn(tx_data, 0);
@@ -540,7 +540,7 @@ int wilc_wlan_txq_add_mgmt_pkt(struct net_device *dev, void *priv, u8 *buffer,
 		return 0;
 	}
 
-	if (!(wilc->initialized)) {
+	if (!wilc->initialized) {
 		PRINT_INFO(vif->ndev, TX_DBG, "wilc not_init\n");
 		tx_complete_fn(priv, 0);
 		return 0;
@@ -759,13 +759,13 @@ static void chip_wakeup_wilc1000(struct wilc *wilc, int source)
 		to_host_from_fw_bit = WILC_SPI_FW_TO_HOST_BIT;
 	}
 
-	/*USE bit 0 to indicate host wakeup*/
+	/* indicate host wakeup */
 	ret = hif_func->hif_write_reg(wilc, from_host_to_fw_reg,
 				      from_host_to_fw_bit);
 	if (ret)
 		return;
 
-	/* Set bit 1 */
+	/* Set wake-up bit */
 	ret = hif_func->hif_write_reg(wilc, wakeup_reg,
 				      wakeup_bit);
 	if (ret)
@@ -785,7 +785,6 @@ static void chip_wakeup_wilc1000(struct wilc *wilc, int source)
 	}
 	if (trials >= WAKE_UP_TRIAL_RETRY) {
 		pr_err("Failed to wake-up the chip\n");
-		ret = -1;
 		return;
 	}
 	/* Sometimes spi fail to read clock regs after reading

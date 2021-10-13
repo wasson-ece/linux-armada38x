@@ -932,6 +932,7 @@ static int get_station(struct wiphy *wiphy, struct net_device *dev,
 				   "driver not initialized\n");
 			return -EBUSY;
 		}
+
 		wilc_get_statistics(vif, &stats);
 #if KERNEL_VERSION(3, 19, 0) <= LINUX_VERSION_CODE
 		sinfo->filled |= BIT(NL80211_STA_INFO_SIGNAL) |
