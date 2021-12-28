@@ -290,7 +290,7 @@ static struct spi_driver wilc_spi_driver = {
 };
 module_spi_driver(wilc_spi_driver);
 MODULE_LICENSE("GPL");
-MODULE_VERSION("15.4.1");
+MODULE_VERSION("15.5");
 
 static int wilc_spi_tx(struct wilc *wilc, u8 *b, u32 len)
 {
@@ -1166,11 +1166,17 @@ static int wilc_spi_deinit(struct wilc *wilc)
 {
 	struct wilc_spi *spi_priv = wilc->bus_data;
 
-	/*
-	 * TODO:
-	 */
 	spi_priv->is_init = false;
 	wilc_wlan_power(wilc, false);
+
+	return 0;
+}
+
+static int wilc_spi_clear_init(struct wilc *wilc)
+{
+	struct wilc_spi *spi_priv = wilc->bus_data;
+
+	spi_priv->is_init = false;
 
 	return 0;
 }
@@ -1194,6 +1200,21 @@ static int wilc_spi_init(struct wilc *wilc, bool resume)
 	/*
 	 * configure protocol
 	 */
+
+	/* XXX: Due to current design of the IMX SPI driver, a dummy transaction
+	 * is needed in order to change SPI modes (or other features of the CPU
+	 * SPI peripheral). The WILC module is a little too smart for its own
+	 * good. It is able to accommodate any of the 4 modes but seems to latch
+	 * in the mode on the first SPI transaction. This means that when we do
+	 * a dummy SPI transaction to change the mode, the module sets the first
+	 * mode as the expected mode.
+	 *
+	 * To combat this, we just issue a reset command to the module, then
+	 * do a power cycle of the module to reset the SPI mode it expects.
+	 */
+	wilc_spi_reset(wilc);
+	wilc_wlan_power(wilc, false);
+	wilc_wlan_power(wilc, true);
 
 	/*
 	 * Infer the CRC settings that are currently in effect.  This
@@ -1397,4 +1418,5 @@ static const struct wilc_hif_func wilc_hif_spi = {
 	.hif_sync_ext = wilc_spi_sync_ext,
 	.hif_reset = wilc_spi_reset,
 	.hif_is_init = wilc_spi_is_init,
+	.hif_clear_init = wilc_spi_clear_init,
 };

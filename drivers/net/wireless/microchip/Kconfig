@@ -1,15 +1,20 @@
 # SPDX-License-Identifier: GPL-2.0
+# SPDX-License-Identifier: GPL-2.0
+config WLAN_VENDOR_MICROCHIP
+        bool "Microchip devices"
+        default y
+        help
+        If you have a wireless card belonging to this class, say Y.
+
+        Note that the answer to this question doesn't directly affect the
+        kernel: saying N will just cause the configurator to skip all the
+        questions about these cards. If you say Y, you will be asked for
+        your specific card in the following questions.
+
+if WLAN_VENDOR_MICROCHIP
+
 config WILC
 	tristate
-
-config WLAN_VENDOR_MCHP
-        bool "Microhip devices"
-        default y
-	help
-	This adds support for WILC1000 & WILC3000 chips which support
-	IEEE 802.11n WiFi. WILC3000 is a WiFi-BT combo chip.
-
-if WLAN_VENDOR_MCHP
 
 config WILC_SDIO
 	tristate "WILC SDIO"
@@ -54,4 +59,5 @@ config WILC_HW_OOB_INTR
 	  interrupt mechanism for SDIO host controllers that don't support SDIO
 	  interrupt. Select this option If the SDIO host controller in your
 	  platform doesn't support SDIO time devision interrupt.
-endif
+
+endif # WLAN_VENDOR_MICROCHIP

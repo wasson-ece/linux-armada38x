@@ -24,7 +24,7 @@ obj-$(CONFIG_B43LEGACY)		+= b43legacy/
 obj-$(CONFIG_ZD1211RW)		+= zd1211rw/
 obj-$(CONFIG_WLAN)		+= realtek/
 
-obj-$(CONFIG_WLAN_VENDOR_MCHP) += microchip/
+obj-$(CONFIG_WLAN_VENDOR_MICROCHIP) += microchip/
 
 # 16-bit wireless PCMCIA client drivers
 obj-$(CONFIG_PCMCIA_RAYCS)	+= ray_cs.o
