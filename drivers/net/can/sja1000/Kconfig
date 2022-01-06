@@ -25,7 +25,7 @@ config CAN_TS7800V2
    tristate "TS-7800v2 FPGA CAN Controller"
    depends on MACH_ARMADA_38X
    ---help---
-   Say Y here if you have a Technologic Systems TS-7800v2 board and want to
+   Say Y here if you have a embeddedTS TS-7800v2 board and want to
    use the CAN controller in the board's FPGA.
 
    To compile this driver as a module, choose M here: the module will
@@ -106,8 +106,8 @@ config CAN_TSCAN1
    tristate "TS-CAN1 PC104 boards"
    depends on ISA
    help
-     This driver is for Technologic Systems' TSCAN-1 PC104 boards.
-     http://www.embeddedarm.com/products/board-detail.php?product=TS-CAN1
+     This driver is for embeddedTS' TSCAN-1 PC104 boards.
+     http://www.embeddedTS.com/products/board-detail.php?product=TS-CAN1
      The driver supports multiple boards and automatically configures them:
      PLD IO base addresses are read from jumpers JP1 and JP2,
      IRQ numbers are read from jumpers JP4 and JP5,

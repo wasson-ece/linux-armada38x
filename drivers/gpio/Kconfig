@@ -420,7 +420,7 @@ config GPIO_TZ1090_PDC
 	  Say yes here to support Toumaz Xenif TZ1090 PDC GPIOs.
 
 config GPIO_TS7800V2_DIO
-	tristate "Technologic Systems' TS-7800-V2 GPIO Support"
+	tristate "embeddedTS' TS-7800-V2 GPIO Support"
 	depends on MACH_ARMADA_38X
 	default n
 	help
@@ -586,7 +586,7 @@ config GPIO_TS5500
 	depends on TS5500 || COMPILE_TEST
 	help
 	  This driver supports Digital I/O exposed by pin blocks found on some
-	  Technologic Systems platforms. It includes, but is not limited to, 3
+	  embeddedTS platforms. It includes, but is not limited to, 3
 	  blocks of the TS-5500: DIO1, DIO2 and the LCD port, and the TS-5600
 	  LCD port.
 

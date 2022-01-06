@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Technologic Systems, Inc.
+ * Copyright (C) 2017-2022 Technologic Systems, Inc. dba embeddedTS, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -68,7 +68,7 @@ static struct uart_driver isa16550_uart_driver;
 
 static const struct of_device_id of_ts7800_isa16550_match[] = {
    {
-      .compatible = "technologicsystems,isa16550",
+      .compatible = "embeddedts,isa16550",
    },
 };
 
@@ -228,4 +228,4 @@ module_param_array(io, uint, &io_cnt, 0);
 MODULE_PARM_DESC(irq, "Set interrupt numbers for uarts (e.g., irq=5,6,5,6)");
 module_param_array(irq, uint, NULL, 0);
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Technologic Systems, Inc.");
+MODULE_AUTHOR("embeddedTS, Inc.");

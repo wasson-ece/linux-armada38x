@@ -1,9 +1,9 @@
 /*
- * Device Tree file for Technologic Systems TS-7800-V2
+ * Device Tree file for embeddedTS TS-7800-V2
  *
- *  Copyright (C) 2017 Technologic Systems
+ *  Copyright (C) 2017-2022 Technologic Systems, Inc. dba embeddedTS
  *
- * Mark Featherston <mark@embeddedarm.com>
+ * Mark Featherston <mark@embeddedTS.com>
  *
  * This file is dual-licensed: you can use it either under the terms
  * of the GPL or the X11 license, at your option. Note that this dual
@@ -44,8 +44,8 @@
 #include <dt-bindings/gpio/gpio.h>
 
 / {
-	model = "Technologic Systems TS-7800-V2";
-	compatible = "technologic,a385-ts7800-v2", "marvell,armada385", "marvell,armada380";
+	model = "embeddedTS TS-7800-V2";
+	compatible = "embeddedts,a385-ts7800-v2", "marvell,armada385", "marvell,armada380";
 
 	aliases {
 		ethernet1 = &eth0;
@@ -94,7 +94,7 @@
 				#size-cells = <0>;
 
 				silabs_wdt: silabs-wdt@54 {
-						compatible = "technologicsystems,ts7800v2-wdt";
+						compatible = "embeddedts,ts7800v2-wdt";
 						reg = <0x54>;
 						status = "okay";
 				};
@@ -226,7 +226,7 @@
 	};
 
 	tssdcard: tssdcard@0x0xfc081100 { /* drivers/mmc/host/tssdcard.c */
-		compatible = "technologicsystems,tssdcard";
+		compatible = "embeddedts,tssdcard";
 		#address-cells = <0x1>;
 		#size-cells = <0x0>;
 		reg = <0xfc081100 512>;
@@ -235,7 +235,7 @@
 	};
 
 	isa16550:  isa16550 { /* drivers/tty/serial/8250/ts7800_isa16550.c */
-		compatible = "technologicsystems,isa16550";
+		compatible = "embeddedts,isa16550";
 		#address-cells = <0x1>;
 		#size-cells = <0x0>;
 		reg = <0xFA000000 0x400>;
@@ -252,7 +252,7 @@
 	};
 
 	ts7800v2_gpio: ts7800v2-gpio {   /* drivers/gpio/gpio-ts7800-v2.c */
-		compatible = "technologic,ts7800v2-gpio";
+		compatible = "embeddedts,ts7800v2-gpio";
 		gpio-controller;
 		#gpio-cells = <2>;
 		base = <64>;
@@ -264,11 +264,11 @@
 	};
 
 	ts7800v2_can: ts7800v2-can { /* drivers/net/can/ts7800v2_can.c */
-		compatible = "technologic,ts7800v2-can";
+		compatible = "embeddedts,ts7800v2-can";
 		#address-cells = <0x1>;
 		#size-cells = <0>;
 		reg = <0xFC081000 0x100>;     /* syscon register */
-		technologic,can-clock-frequency = <16000000>;
+		embeddedts,can-clock-frequency = <16000000>;
 		status = "okay";
 	};
 

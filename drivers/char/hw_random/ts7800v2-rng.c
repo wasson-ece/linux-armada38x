@@ -71,6 +71,6 @@ static void __exit ts7800v2_rng_exit(void)
 module_init(ts7800v2_rng_init);
 module_exit(ts7800v2_rng_exit);
 
-MODULE_AUTHOR("Mark Featherston <mark@embeddedarm.com>");
+MODULE_AUTHOR("Mark Featherston <mark@embeddedTS.com>");
 MODULE_DESCRIPTION("FPGA Based RNG");
 MODULE_LICENSE("GPL");
