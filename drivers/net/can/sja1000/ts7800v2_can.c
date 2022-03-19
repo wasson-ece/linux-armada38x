@@ -122,16 +122,16 @@ static void ts7800v2_populate_of(struct sja1000_priv *priv, struct device_node *
    int err;
    u32 prop;
 
-   err = of_property_read_u32(of, "embeddedts,can-clock-frequency", &prop);
+   err = of_property_read_u32(of, "technologic,can-clock-frequency", &prop);
    if (!err && prop) {
 #if (DEBUG_ON)
-      printk("%s %d, \"embeddedts,can-clock-frequency\" %d \n",
+      printk("%s %d, \"technologic,can-clock-frequency\" %d \n",
          __func__, __LINE__, prop);
 #endif
       priv->can.clock.freq = prop / 2;
 
    } else {
-      printk("%s: Did not find \"embeddedts,can-clock-frequency\" in "
+      printk("%s: Did not find \"technologic,can-clock-frequency\" in "
             "device-tree, assuming 16MHz\n",
          __func__);
 
@@ -268,7 +268,7 @@ static int ts7800v2_can_remove(struct platform_device *pdev)
 
 /* Match table for OF platform binding */
 static const struct of_device_id ts7800v2_can_of_match[] = {
-   { .compatible = "embeddedts,ts7800v2-can", },
+   { .compatible = "technologic,ts7800v2-can", },
    { /* end of list */ },
 };
 MODULE_DEVICE_TABLE(of, ts7800v2_can_of_match);

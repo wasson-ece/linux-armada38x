@@ -68,7 +68,7 @@ static struct uart_driver isa16550_uart_driver;
 
 static const struct of_device_id of_ts7800_isa16550_match[] = {
    {
-      .compatible = "embeddedts,isa16550",
+      .compatible = "technologic,isa16550",
    },
 };
 

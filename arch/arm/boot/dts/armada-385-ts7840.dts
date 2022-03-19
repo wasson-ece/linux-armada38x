@@ -45,7 +45,7 @@
 
 / {
 	model = "embeddedTS TS-7840";
-	compatible = "embeddedts,a385-ts7840", "marvell,armada385", "marvell,armada380";
+	compatible = "technologic,a385-ts7840", "marvell,armada385", "marvell,armada380";
 
 	aliases {
 		ethernet1 = &eth0;
@@ -114,7 +114,7 @@
 				pinctrl-0 = <&i2c0_pins>;
 				status = "okay";
 				silabs_wdt: silabs-wdt@54 {
-					compatible = "embeddedts,ts7800v2-wdt";
+					compatible = "technologic,ts7800v2-wdt";
 					reg = <0x54>;
 					status = "okay";
 				};
