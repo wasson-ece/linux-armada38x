@@ -2,6 +2,7 @@
 # Makefile for kernel SPI drivers.
 #
 
+CONFIG_SPI_DEBUG=y
 ccflags-$(CONFIG_SPI_DEBUG) := -DDEBUG
 
 # small core, mostly translating board-specific
