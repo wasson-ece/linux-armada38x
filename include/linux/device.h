@@ -1182,7 +1182,7 @@ do {						     \
 } while (0)
 #elif defined(DEBUG)
 #define dev_dbg(dev, format, arg...)		\
-	dev_printk(KERN_DEBUG, dev, format, ##arg)
+	dev_printk(KERN_DEBUG, dev, __FILE__ ":%d " format, __LINE__ ##arg)
 #else
 #define dev_dbg(dev, format, arg...)				\
 ({								\
